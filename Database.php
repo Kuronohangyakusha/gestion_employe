@@ -11,7 +11,7 @@ class Database {
                 self::$instance = new PDO(
                     'mysql:host=localhost;dbname=gestion_employes;charset=utf8',
                     'root', // remplacez par votre username
-                    'votre_nouveau_mot_de_passe',     // remplacez par votre password
+                    '', // remplacez par votre password (vide par défaut pour XAMPP/WAMP)
                     [
                         PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
                         PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC

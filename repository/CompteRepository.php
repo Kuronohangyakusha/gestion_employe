@@ -45,13 +45,12 @@ class CompteRepository {
         
         // Gestion des attributs spécifiques selon le type
         if ($employe instanceof Manager) {
-            $prime = $employe->calculSalaire() - 2000; // Récupérer la prime
+            $prime = $employe->getPrime();
         } elseif ($employe instanceof Developpeur) {
             $specialite = $this->mapSpecialiteToDb($employe->getSpecialite());
         } elseif ($employe instanceof Admin) {
-            // Vous devrez ajouter des getters pour login et password dans Admin
-            // $login = $employe->getLogin();
-            // $password = $employe->getPassword();
+            $login = $employe->getLogin();
+            $password = $employe->getPassword();
         }
         
         $stmt->execute([

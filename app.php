@@ -34,8 +34,12 @@ try {
     // Test 1: Lister tous les employés
     echo "1. Liste de tous les employés:\n";
     $employes = $compteService->listerService();
-    foreach ($employes as $employe) {
-        echo "- {$employe->getNom()} ({$employe->getType()->value}) - Salaire: {$employe->calculSalaire()}€\n";
+    if (empty($employes)) {
+        echo "Aucun employé trouvé.\n";
+    } else {
+        foreach ($employes as $employe) {
+            echo "- {$employe->getNom()} ({$employe->getType()->value}) - Salaire: {$employe->calculSalaire()}€\n";
+        }
     }
     echo "\n";
     
@@ -48,8 +52,12 @@ try {
     // Test 3: Lister les services
     echo "3. Liste des services:\n";
     $services = $serviceService->obtenirServices();
-    foreach ($services as $service) {
-        echo "- {$service->getNom()} (ID: {$service->getId()})\n";
+    if (empty($services)) {
+        echo "Aucun service trouvé.\n";
+    } else {
+        foreach ($services as $service) {
+            echo "- {$service->getNom()} (ID: {$service->getId()})\n";
+        }
     }
     echo "\n";
     
@@ -69,8 +77,12 @@ try {
     // Test 5: Lister les développeurs par spécialité
     echo "5. Développeurs FullStack:\n";
     $devs = $compteService->obtenirDeveloppeursParSpecialite(Specialite::FullStack);
-    foreach ($devs as $dev) {
-        echo "- {$dev->getNom()}\n";
+    if (empty($devs)) {
+        echo "Aucun développeur FullStack trouvé.\n";
+    } else {
+        foreach ($devs as $dev) {
+            echo "- {$dev->getNom()}\n";
+        }
     }
     echo "\n";
     
@@ -81,6 +93,12 @@ try {
     echo "7. Création d'un nouveau service:\n";
     $success = $serviceService->creerService("Marketing Digital");
     echo $success ? "✓ Service créé avec succès\n" : "✗ Erreur lors de la création\n";
+    echo "\n";
+    
+    // Test 8: Créer un manager
+    echo "8. Création d'un nouveau manager:\n";
+    $success = $compteService->creerManager("Marie Dubois", "0123456793", 800.0);
+    echo $success ? "✓ Manager créé avec succès\n" : "✗ Erreur lors de la création\n";
     echo "\n";
     
     echo "=== TESTS TERMINÉS ===\n";

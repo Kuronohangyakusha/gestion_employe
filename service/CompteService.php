@@ -20,7 +20,7 @@ class CompteService {
         $this->serviceRepository = new ServiceRepository();
     }
 
-    public function creerService(Employee $employe): bool {
+    public function creerEmploye(Employee $employe): bool {
         try {
             $id = $this->compteRepository->insert($employe);
             return $id > 0;
@@ -34,23 +34,23 @@ class CompteService {
         return $this->compteRepository->selectAll();
     }
 
-    public function listerServiceSansManager(): array {
+    public function listerManagersSansService(): array {
         return $this->compteRepository->selectByFilter(['type' => 'Manager']);
     }
 
     public function creerAdmin(string $nom, string $tel, string $login, string $password): bool {
         $admin = new Admin(0, $nom, $tel, Type::Admin, $login, $password);
-        return $this->creerService($admin);
+        return $this->creerEmploye($admin);
     }
 
     public function creerManager(string $nom, string $tel, float $prime): bool {
         $manager = new Manager(0, $nom, $tel, Type::Manager, $prime);
-        return $this->creerService($manager);
+        return $this->creerEmploye($manager);
     }
 
     public function creerDeveloppeur(string $nom, string $tel, Specialite $specialite): bool {
         $developpeur = new Developpeur(0, $nom, $tel, Type::Developpeur, $specialite);
-        return $this->creerService($developpeur);
+        return $this->creerEmploye($developpeur);
     }
 
     public function obtenirEmployeParId(int $id): ?Employee {
@@ -87,7 +87,7 @@ class CompteService {
         };
         
         return $this->compteRepository->selectByFilter([
-            'type' => 'Developper',
+            'type' => 'Developpeur',
             'specialite' => $specialiteDb
         ]);
     }

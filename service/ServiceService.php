@@ -16,11 +16,11 @@ class ServiceService {
         $this->compteRepository = new CompteRepository();
     }
 
-    public function listerEmploye(): array {
+    public function listerEmployes(): array {
         return $this->compteRepository->selectAll();
     }
 
-    public function isterEmploye(array $filter): array {
+    public function listerEmployesAvecFiltre(array $filter): array {
         return $this->compteRepository->selectByFilter($filter);
     }
 
@@ -68,7 +68,7 @@ class ServiceService {
     }
 
     public function obtenirStatistiques(): array {
-        $employes = $this->listerEmploye();
+        $employes = $this->listerEmployes();
         $services = $this->obtenirServices();
         
         $stats = [
